@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/shared/styles/colors.dart';
 
+import '../../models/task.dart';
+
 class TaskItem extends StatelessWidget {
-  const TaskItem({Key? key}) : super(key: key);
+  Task task;
+  TaskItem(this.task, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,24 +24,35 @@ class TaskItem extends StatelessWidget {
           ),
           Expanded(
               child: Container(
-                margin: EdgeInsets.only(left: 5),
-                child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-                Text("Task",style: Theme.of(context).textTheme.bodyText1!.copyWith(color: colorBlue),),
-                SizedBox(height: 5,),
-                Text("Task description"),
-            ],
-          ),
-              )),
+            margin: EdgeInsets.only(left: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  task.title,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(color: colorBlue),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(task.description),
+              ],
+            ),
+          )),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 12),
+              padding: EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(
                 color: colorBlue,
                 borderRadius: BorderRadius.circular(8),
               ),
-              margin: EdgeInsets.only(left: 5),
-              child:  Icon(Icons.done,color: Colors.white,))
+              margin: const EdgeInsets.only(left: 5),
+              child: const Icon(
+                Icons.done,
+                color: Colors.white,
+              ))
         ],
       ),
     );
